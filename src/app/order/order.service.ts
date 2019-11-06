@@ -46,6 +46,7 @@ export class OrderService {
                             )
                         )
                         .map(response => response.json())
+                        .map(order => order.id)
 
     }
 
