@@ -370,5 +370,40 @@
       "restaurantId": "tasty-treats"
     }
   ],
-  "orders": []
+  "orders": [
+    {
+      "address": "Endereço 1",
+      "number": "1234",
+      "optionalAddress": "lllll",
+      "paymentOption": "MON",
+      "orderItems": [
+        {
+          "quantity": 1,
+          "menyId": "bread"
+        },
+        {
+          "quantity": 1,
+          "menyId": "donut"
+        }
+      ],
+      "id": 1
+    },
+    {
+      "address": "endereço1234",
+      "number": "4321",
+      "optionalAddress": "aaaaa",
+      "paymentOption": "REF",
+      "orderItems": [
+        {
+          "quantity": 1,
+          "menyId": "ceasar"
+        },
+        {
+          "quantity": 1,
+          "menyId": "greensandwich"
+        }
+      ],
+      "id": 2
+    }
+  ]
 }
