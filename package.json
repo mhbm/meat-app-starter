@@ -13,6 +13,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular/animations": "^4.0.0",
     "@angular/common": "4.0.0",
     "@angular/compiler": "4.0.0",
     "@angular/core": "4.0.0",
@@ -22,13 +23,17 @@
     "@angular/platform-browser-dynamic": "4.0.0",
     "@angular/router": "4.0.0",
     "admin-lte": "2.3.11",
+    "bootstrap-loader": "^3.0.4",
     "core-js": "2.4.1",
     "font-awesome": "4.7.0",
     "intl": "1.2.5",
-    "jquery": "3.1.1",
+    "jquery": "^3.1.1",
     "reflect-metadata": "0.1.9",
+    "resolve-url-loader": "^3.1.0",
     "rxjs": "5.1.0",
+    "tether": "^1.4.7",
     "ts-helpers": "1.1.2",
+    "web-animations-js": "^2.3.2",
     "zone.js": "0.8.4"
   },
   "devDependencies": {
