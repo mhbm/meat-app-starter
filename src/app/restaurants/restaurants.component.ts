@@ -2,7 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Restaurant } from './restaurant/restaurant.model';
 import { RestaurantsService } from './restaurants.service';
 import { state, trigger, style, transition, animate } from '@angular/animations';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
+import 'rxjs/add/operator/switchMap'
+import 'rxjs/add/operator/debounceTime'
+import 'rxjs/add/operator/distinctUntilChanged'
 
 @Component({
   selector: 'mt-restaurants',
@@ -28,9 +32,23 @@ export class RestaurantsComponent implements OnInit {
 
   restaurants : Restaurant[]
 
-  constructor(private restaurantsService: RestaurantsService) { }
+  searchForm: FormGroup
+  searchControl: FormControl
+
+  constructor(private restaurantsService: RestaurantsService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+
+    this.searchControl = this.formBuilder.control(``)
+
+    this.searchForm = this.formBuilder.group({
+      searchControl: this.searchControl
+    })
+
+    this.searchControl.valueChanges.debounceTime(500).distinctUntilChanged().switchMap(  
+          searchTerm => this.restaurantsService.restaurants(searchTerm)
+      ).subscribe(restaurants => this.restaurants = restaurants)
+    
     this.restaurantsService.restaurants()
       .subscribe(restaurants => this.restaurants = restaurants)
   }
