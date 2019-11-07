@@ -518,6 +518,30 @@
         }
       ],
       "id": 9
+    },
+    {
+      "name": "coreModule",
+      "email": "coreModule@coreModule.com",
+      "emailConfirmation": "coreModule@coreModule.com",
+      "address": "coreModule@coreModule.com",
+      "number": "1",
+      "optionalAddress": "",
+      "paymentOption": "DEB",
+      "orderItems": [
+        {
+          "quantity": 1,
+          "menyId": "ceasar"
+        },
+        {
+          "quantity": 1,
+          "menyId": "greensandwich"
+        },
+        {
+          "quantity": 1,
+          "menyId": "zlasagna"
+        }
+      ],
+      "id": 10
     }
   ]
 }

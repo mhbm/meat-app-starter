@@ -22,6 +22,7 @@ import { OrderService } from './order/order.service';
 
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import { SharedModule } from './shared/shared.module';
+import { CoreModule } from './core/core.module';
 
 
 @NgModule({
@@ -42,9 +43,10 @@ import { SharedModule } from './shared/shared.module';
     BrowserModule,
     HttpModule,
     SharedModule,
+    CoreModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [RestaurantsService, ShoppingCartService,{provide: LOCALE_ID, useValue : 'pt-BR'}, OrderService],
+  providers: [{provide: LOCALE_ID, useValue : 'pt-BR'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
