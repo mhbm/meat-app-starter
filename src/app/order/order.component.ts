@@ -4,7 +4,7 @@ import { OrderService } from './order.service';
 import { CartItem } from '../restaurant-detail/shopping-cart/cart-item.model';
 import { Order, OrderItem } from './order.model';
 
-import {FormGroup, FormBuilder, Validator, Validators, AbstractControl} from "@angular/forms"
+import {FormGroup, FormBuilder, Validators, AbstractControl} from "@angular/forms"
 
 import { Router } from "@angular/router"
 
