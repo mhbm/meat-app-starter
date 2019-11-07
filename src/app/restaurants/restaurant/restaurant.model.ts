@@ -6,6 +6,8 @@ export interface Restaurant {
     deliveryEstimate: string
     rating: number
     imagePath: string
+    about?: string
+    hours?: string
 
     /* Retirados do file db.json
     "id": "bread-bakery",
