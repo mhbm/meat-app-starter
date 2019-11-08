@@ -26,7 +26,7 @@ export var ROUTES = [
         ]
     },
     { path: 'order', loadChildren: "./order/order.module#OrderModule",
-        canLoad: [LoggedInGuard] },
+        canLoad: [LoggedInGuard], canActivate: [LoggedInGuard] },
     { path: 'about', loadChildren: "./about/about.module#AboutModule" },
     { path: "order-summary", component: OrderSummaryComponent },
     //WILDCARD ROUTE

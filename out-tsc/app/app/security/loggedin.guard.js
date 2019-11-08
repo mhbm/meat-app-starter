@@ -13,12 +13,20 @@ var LoggedInGuard = (function () {
     function LoggedInGuard(loginService) {
         this.loginService = loginService;
     }
-    LoggedInGuard.prototype.canLoad = function (route) {
+    LoggedInGuard.prototype.checkAuthentification = function (path) {
         var loggedIn = this.loginService.isLoggedIn();
         if (!loggedIn) {
-            this.loginService.handleLogin("" + route.path);
+            this.loginService.handleLogin("" + path);
         }
         return loggedIn;
+    };
+    LoggedInGuard.prototype.canLoad = function (route) {
+        console.log("Method canLoad");
+        return this.checkAuthentification(route.path);
+    };
+    LoggedInGuard.prototype.canActivate = function (activatedRouteSnapshot, routerStateSnashot) {
+        console.log("Method canActivate");
+        return this.checkAuthentification(activatedRouteSnapshot.routeConfig.path);
     };
     LoggedInGuard = __decorate([
         Injectable(),

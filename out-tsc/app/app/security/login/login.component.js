@@ -25,7 +25,7 @@ var LoginComponent = (function () {
             email: this.fb.control('', [Validators.required, Validators.email]),
             password: this.fb.control('', [Validators.required])
         });
-        this.navigateTo = this.activatedRoute.snapshot.params['to'] || '/';
+        this.navigateTo = this.activatedRoute.snapshot.params['to'] || btoa('/');
     };
     LoginComponent.prototype.login = function () {
         var _this = this;
@@ -33,7 +33,7 @@ var LoginComponent = (function () {
             .subscribe(function (user) { return _this.notificationService.notify("Bem vindo, " + user.name); }, function (response) {
             return _this.notificationService.notify(response.error.message);
         }, function () {
-            _this.router.navigate([_this.navigateTo]);
+            _this.router.navigate([atob(_this.navigateTo)]);
         });
     };
     LoginComponent = __decorate([
