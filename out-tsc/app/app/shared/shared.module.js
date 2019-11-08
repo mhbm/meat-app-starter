@@ -17,6 +17,7 @@ import { SnackbarComponent } from './message/snackbar/snackbar.component';
 import { NotificationService } from "./message/notification.service";
 import { LoginService } from "app/security/login/login.service";
 import { LoggedInGuard } from '../security/loggedin.guard';
+import { LeaveOrderGuard } from "app/order/leave-order.guard";
 var SharedModule = (function () {
     function SharedModule() {
     }
@@ -29,7 +30,8 @@ var SharedModule = (function () {
                 LoginService,
                 RestaurantsService,
                 OrderService,
-                NotificationService
+                NotificationService,
+                LeaveOrderGuard
             ]
         };
     };

@@ -14,6 +14,7 @@ import { NotificationService } from "./message/notification.service";
 import { LoginService } from "app/security/login/login.service";
 
 import { LoggedInGuard } from '../security/loggedin.guard'
+import { LeaveOrderGuard } from "app/order/leave-order.guard";
 
 @NgModule({
     declarations: [
@@ -47,7 +48,8 @@ export class SharedModule {
                 LoginService,
                 RestaurantsService,
                 OrderService,
-                NotificationService
+                NotificationService,
+                LeaveOrderGuard
             ]
         }
     }

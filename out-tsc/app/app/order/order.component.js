@@ -65,11 +65,18 @@ var OrderComponent = (function () {
     OrderComponent.prototype.remove = function (item) {
         this.orderService.remove(item);
     };
+    OrderComponent.prototype.isOrderCompleted = function () {
+        return this.orderId !== undefined;
+    };
     OrderComponent.prototype.checkOrder = function (order) {
         var _this = this;
         order.orderItems = this.cartItems()
             .map(function (item) { return new OrderItem(item.quantity, item.menuItem.id); });
-        this.orderService.checkOrder(order).subscribe(function (orderId) {
+        this.orderService.checkOrder(order)
+            .do(function (orderId) {
+            _this.orderId = orderId;
+        })
+            .subscribe(function (orderId) {
             _this.router.navigate(['/order-summary']);
             console.log("Compra concluida " + orderId);
             _this.orderService.clear();
