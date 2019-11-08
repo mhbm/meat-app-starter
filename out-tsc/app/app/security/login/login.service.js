@@ -11,9 +11,11 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 import { MEAT_API } from "app/app.api";
 import 'rxjs/add/operator/do';
+import { Router } from "@angular/router";
 var LoginService = (function () {
-    function LoginService(http) {
+    function LoginService(http, router) {
         this.http = http;
+        this.router = router;
     }
     LoginService.prototype.isLoggedIn = function () {
         return this.user !== undefined;
@@ -23,9 +25,12 @@ var LoginService = (function () {
         return this.http.post(MEAT_API + "/login", { email: email, password: password })
             .do(function (user) { return _this.user = user; });
     };
+    LoginService.prototype.handleLogin = function (path) {
+        this.router.navigate(['/login', path]);
+    };
     LoginService = __decorate([
         Injectable(),
-        __metadata("design:paramtypes", [HttpClient])
+        __metadata("design:paramtypes", [HttpClient, Router])
     ], LoginService);
     return LoginService;
 }());
