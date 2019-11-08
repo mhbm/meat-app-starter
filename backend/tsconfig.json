@@ -1,0 +1,6 @@
+{
+    "compileOnSave" : true, //Compilar o arquivo de TS para JS assim que salvar o arquivo TS
+    "compilerOptions": { //Diretorio apos a compilação do TS
+        "outDir" : "dist" 
+    }
+}
