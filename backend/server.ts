@@ -17,6 +17,7 @@ server.use(middlewares)
 // You can use the one used by JSON Server
 server.use(jsonServer.bodyParser)
 
+
 // middleware para login
 server.post('/login', handleAuthentication)
 server.use('/orders/', handleAuthorization)
@@ -24,8 +25,8 @@ server.use('/orders/', handleAuthorization)
 server.use(router)
 
 const options = {
-  cert : fs.readFileSync('./backend/keys/cert.pem'),
-  key: fs.readFileSync('./backend/keys/key.pem') 
+  cert : fs.readFileSync('../keys/cert.pem'),
+  key: fs.readFileSync('../keys/key.pem') 
 }
 
 
