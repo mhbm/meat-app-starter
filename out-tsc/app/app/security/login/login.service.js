@@ -11,11 +11,15 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 import { MEAT_API } from "app/app.api";
 import 'rxjs/add/operator/do';
-import { Router } from "@angular/router";
+import { Router, NavigationEnd } from "@angular/router";
+import 'rxjs/add/operator/filter';
 var LoginService = (function () {
     function LoginService(http, router) {
+        var _this = this;
         this.http = http;
         this.router = router;
+        this.router.events.filter(function (e) { return e instanceof NavigationEnd; })
+            .subscribe(function (e) { return _this.lastUrl = e.url; });
     }
     LoginService.prototype.isLoggedIn = function () {
         return this.user !== undefined;
@@ -26,7 +30,11 @@ var LoginService = (function () {
             .do(function (user) { return _this.user = user; });
     };
     LoginService.prototype.handleLogin = function (path) {
+        if (path === void 0) { path = this.lastUrl; }
         this.router.navigate(['/login', btoa(path)]);
+    };
+    LoginService.prototype.logout = function () {
+        this.user = undefined;
     };
     LoginService = __decorate([
         Injectable(),
