@@ -10,10 +10,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { LoginService } from './login.service';
+import { NotificationService } from 'app/shared/message/notification.service';
 var LoginComponent = (function () {
-    function LoginComponent(fb, loginService) {
+    function LoginComponent(fb, loginService, notificationService) {
         this.fb = fb;
         this.loginService = loginService;
+        this.notificationService = notificationService;
     }
     LoginComponent.prototype.ngOnInit = function () {
         this.loginForm = this.fb.group({
@@ -22,8 +24,11 @@ var LoginComponent = (function () {
         });
     };
     LoginComponent.prototype.login = function () {
+        var _this = this;
         this.loginService.login(this.loginForm.value.email, this.loginForm.value.password)
-            .subscribe(function (user) { return console.log(user); });
+            .subscribe(function (user) { return _this.notificationService.notify("Bem vindo, " + user.name); }, function (response) {
+            return _this.notificationService.notify(response.error.message);
+        });
     };
     LoginComponent = __decorate([
         Component({
@@ -31,7 +36,9 @@ var LoginComponent = (function () {
             templateUrl: './login.component.html',
             styleUrls: ['./login.component.css']
         }),
-        __metadata("design:paramtypes", [FormBuilder, LoginService])
+        __metadata("design:paramtypes", [FormBuilder,
+            LoginService,
+            NotificationService])
     ], LoginComponent);
     return LoginComponent;
 }());
