@@ -8,6 +8,8 @@ import {FormGroup, FormBuilder, FormControl ,Validators, AbstractControl} from "
 
 import { Router } from "@angular/router"
 
+import {tap} from 'rxjs/operators'
+
 @Component({
   selector: 'mt-order',
   templateUrl: './order.component.html'
@@ -43,7 +45,10 @@ export class OrderComponent implements OnInit {
       address: this.formBuilder.control('', [Validators.required, Validators.minLength(5)]),
       number : this.formBuilder.control('', [Validators.required, Validators.pattern(this.numberPattern)]),
       optionalAddress : this.formBuilder.control(''),
-      paymentOption: this.formBuilder.control('', [Validators.required])
+      paymentOption: new FormControl('', {
+        validators: [Validators.required],
+        updateOn: 'change'
+      })
     }, {validators: [OrderComponent.equalsTo], updateOn: 'blur'})
   }
 
@@ -90,9 +95,9 @@ export class OrderComponent implements OnInit {
       .map((item: CartItem) => new OrderItem(item.quantity, item.menuItem.id))
 
     this.orderService.checkOrder(order)
-      .do( (orderId: string) => {
+      .pipe(tap( (orderId: string) => {
         this.orderId = orderId
-      })
+      }))
       .subscribe( (orderId: string) => {
         this.router.navigate(['/order-summary'])
         console.log(`Compra concluida ${orderId}`)
